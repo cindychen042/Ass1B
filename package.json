@@ -1,0 +1,19 @@
+{
+  "name": "ass1b",
+  "version": "1.0.0",
+  "description": "CISE PROJECT",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cindychen042/Ass1B.git"
+  },
+  "author": "Ghazi, Alyssa , Cindy",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cindychen042/Ass1B/issues"
+  },
+  "homepage": "https://github.com/cindychen042/Ass1B#readme"
+}
