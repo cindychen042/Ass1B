@@ -13,7 +13,7 @@ jobs:
       - uses: actions/checkout@v2
       - uses: akhileshns/heroku-deploy@v3.12.12
         with:
-          heroku_api_key: ${{secrets.fullwebapp}}
+          heroku_api_key: ${{secrets.cise-ass1b-group6}}
           heroku_app_name: "cise-ass1b-group6"
           heroku_email: "cindychen042@gmail.com"
           procfile: "web: npm start"
