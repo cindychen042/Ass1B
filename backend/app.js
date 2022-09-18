@@ -10,4 +10,10 @@ app.get('/', (req, res) => res.send('Hello world!'));
 
 const port = process.env.PORT || 8082;
 
+app.get('*',function(res,req){
+    res.sendFile(path.resolve(__dirname,'../frontend/build','index.html'))
+})
+
 app.listen(port, () => console.log(`Server running on port ${port}`));
+
+
