@@ -10,6 +10,9 @@ function MainPage(){
             <div className='link2'>
             <Link to='/articles' style={{textDecoration:'none',color:'white'}}>Submit An Article</Link>
             </div>
+            <div className='link3'>
+            <Link to='/search' style={{textDecoration:'none',color:'white'}}>Search For an Article</Link>
+            </div>
         </div>
 
     )
