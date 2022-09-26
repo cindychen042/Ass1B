@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { DataGrid } from '@mui/x-data-grid';
+import MainPage from "./mainpage";
  
  
 const columns = [
@@ -64,6 +65,7 @@ const rows = [
 export default function SearchArticles(){
  return (
    <div style={{ height: 550, width: '100%' }}>
+    <MainPage></MainPage>
      <DataGrid
        rows={rows}
        columns={columns}
