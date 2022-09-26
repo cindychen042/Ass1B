@@ -22,14 +22,23 @@
     "@emotion/react": "^11.10.4",
     "@emotion/styled": "^11.10.4",
     "@mui/material": "^5.10.6",
+<<<<<<< HEAD
     "axios": "^0.27.2",
+=======
+    "@mui/styled-engine-sc": "^5.10.6",
+>>>>>>> 8238032de15c4e33e37335d97b98276e1e284111
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.20.0",
     "config": "^3.3.7",
     "cors": "^2.8.5",
     "express": "^4.18.1",
+<<<<<<< HEAD
     "mongoose": "^6.6.1",
     "react-router-dom": "^6.4.1",
+=======
+    "mongoose": "^6.5.2",
+    "styled-components": "^5.3.5",
+>>>>>>> 8238032de15c4e33e37335d97b98276e1e284111
     "validation": "^0.0.1"
   },
   "devDependencies": {
