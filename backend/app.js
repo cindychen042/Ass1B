@@ -20,7 +20,10 @@ app.get('/',async function(req,res){
     res.send(article)
 })
 
-
+app.get('/:id',async function(req,res){
+    const article1 = await Article.findById(req.params.id);
+    res.send(article1)
+})
 
 app.post('/articles',jsonParser,(req,res)=>{
     let data = {
