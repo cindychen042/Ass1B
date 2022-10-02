@@ -27,6 +27,15 @@ const tablecolumns = [
         accessor:'journal'
     },
     {
+      Header:'Number',
+      accessor:'number'
+    },
+    {
+      Header:'Volume',
+      accessor:'volume'
+    },
+    
+    {
         Header:'status',
         accessor:'status'
     }
@@ -35,6 +44,7 @@ const tablecolumns = [
         Header:'method',
         accessor:'method'
     }
+  
   ]
 
 //naming the headers and their accessor here
