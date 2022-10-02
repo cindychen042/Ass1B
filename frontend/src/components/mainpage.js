@@ -1,5 +1,4 @@
-import DisplayArticles from "./articleDisplay"
-import Articles from "./articleSubmit";
+import React from'react';
 import {Link} from 'react-router-dom';
 function MainPage(){
     return(
@@ -12,6 +11,9 @@ function MainPage(){
             </div>
             <div className='link'>
             <Link to='/search' style={{textDecoration:'none',color:'white'}}>Search For an Article</Link>
+            </div>
+            <div className='link4'>
+            <Link to='/list' style={{textDecoration:'none',color:'white'}}>Moderator</Link>
             </div>
         </div>
 
