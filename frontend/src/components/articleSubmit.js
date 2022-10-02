@@ -6,7 +6,6 @@ import MainPage from "./mainpage";
 
 
 
-
 function Articles(){
         const [content,setContent] = useState({title:'',authors:'',volume:'',journal:'',number:'',pages:'',source:'',pubyear:'',doi:'',claim:'',evidence:''})
         const [openDialog,setOpenDialog] = useState({message:'',value:0})
