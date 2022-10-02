@@ -5,6 +5,10 @@ import tablecolumns from "../components/tablecolumns.js";
 import Styles from './tablestyles.js';
 import MainPage from './mainpage.js';
 const Table = ({columns, data}) => {
+ 
+
+    //console.log(articles.filter(item=> item.title.includes("experimental")));
+
 const {
     getTableProps,
     getTableBodyProps,
@@ -31,8 +35,10 @@ const {
     useSortBy,
     usePagination
   )
+  
     return (
         <>
+        
           <table {...getTableProps()}>
             <thead>
               {headerGroups.map(headerGroup => (
@@ -115,8 +121,8 @@ const {
 
       
 
+    
 function DisplayArticles(){
-
     let [articlesList,setArticlesList] = useState([])
     let [selection,setSelection] = useState({data:'',value:''}); //creating a selection state, to control user selection
     useEffect(()=>{
@@ -157,11 +163,13 @@ function DisplayArticles(){
         <div className='main-page'>
             <Styles>
                 <MainPage></MainPage>
+                
                 <select onChange={(e)=>{onSelectionChange(e)}}>
                     <option  value=''>Select an option...</option>
                     <option value='TDD'>TDD</option>
                     <option value='Mob Programming'>Mob Programming</option>
                 </select>
+                
                 <Table
             data={articlesList}
             columns={tablecolumns}
