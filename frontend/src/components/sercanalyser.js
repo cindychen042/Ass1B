@@ -2,6 +2,7 @@ import {useState,useEffect,} from 'react';
 import { useNavigate,useParams } from 'react-router-dom';
 import axios from 'axios';
 import { Button, Dialog } from '@mui/material';
+import MainPage from './mainpage';
 
 function SercAnalyser(){
     const id = useParams() // to access a specific article by id 
@@ -64,20 +65,8 @@ function SercAnalyser(){
         return(
         articlesInQueue.map((article)=>{
             return(
-            <div className='article-div'>
-                <p>Title: {title}</p>
-                <p>Authors: {authors}</p>
-                <p>Source: {source} </p>
-                <p>Volume : {volume}</p>
-                <p>Pages : {pages}</p>
-                <p>Journal : {journal}</p>
-                <p>Number : {number}</p>
-                <p>Publish year : {pubyear}</p>
-                <p>DOI : {doi}</p>
-                <p>Claim : {claim}</p>
-                <p>Evidence: {evidence}</p>
-                <p>Method: {method}</p>
-                <p>Status: {status}</p>
+            <div className='queue-div'>
+                <h1>Article # {article.article} </h1>
                 
                 <Button  onClick={(e)=>editButtonById(article.article)}>Edit</Button>
                 <Dialog open={open} fullWidth onClose={(e)=>setOpen(false)}>
@@ -108,6 +97,7 @@ function SercAnalyser(){
 
     return(
         <div className='analyser-div'>
+            <MainPage/>
             <h1>SERC QUEUE</h1>
             {mappingArticles()}
 
