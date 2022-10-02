@@ -13,13 +13,13 @@
 
 }
 
-.link1,.link2{
+.link{
   height:40px;
   width:190px;
   transition: all 0.4s ease-in-out;
 }
 
-.link1:hover,.link2:hover{
+.link:hover{
   background-color: aqua;
 }
 
