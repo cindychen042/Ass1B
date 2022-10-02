@@ -128,6 +128,7 @@ function DisplayArticles(){
     useEffect(()=>{
         axios.get('http://localhost:8082/').then((res)=>{
             if(selection.value===''){
+              console.log(res.data)
                 setArticlesList(
                     res.data
             ) 

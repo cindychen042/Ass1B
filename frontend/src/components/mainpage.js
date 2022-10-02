@@ -3,13 +3,13 @@ import {Link} from 'react-router-dom';
 function MainPage(){
     return(
         <div className='nav-div'>
-            <div className='link1'>
+            <div className='link'>
             <Link to='/' style={{textDecoration:'none',color:'white'}}>Home</Link>
             </div>
-            <div className='link2'>
+            <div className='link'>
             <Link to='/articles' style={{textDecoration:'none',color:'white'}}>Submit An Article</Link>
             </div>
-            <div className='link3'>
+            <div className='link'>
             <Link to='/search' style={{textDecoration:'none',color:'white'}}>Search For an Article</Link>
             </div>
             <div className='link4'>
