@@ -42,6 +42,7 @@ app.post('/articles',jsonParser,(req,res)=>{
 })
 
 
+
 app.get('/analyser/articles',async function(req,res){
     const articlesInQueue = await QueueArticles.find()
     res.send(articlesInQueue)
