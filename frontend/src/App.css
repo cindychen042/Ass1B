@@ -67,3 +67,25 @@
 .header{
   width:120%;
 }
+
+
+
+/* STYLING SERC ANALYSER */
+
+.analyser-div{
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: column wrap;
+  gap:10px;
+}
+.queue-div{
+  display:flex;
+  justify-content: center;
+  width:50%;
+  align-items: center;
+  flex-flow:column wrap;
+  border:none;
+  background-color: whitesmoke;
+  border-radius: 8px;
+} 
