@@ -68,24 +68,25 @@
   width:120%;
 }
 
-.searchDiv{
-  margin: auto;
-  padding: 10px;
-  padding-left: 35%;
-}
 
-.searchBar{
-  margin: auto;
-  width: 50%;
-  height: 40px;
-  border: 3px solid grey;
-  border-radius: 15px;
-}
 
-.searchButton{
-  margin: auto;
-  width: 50%;
-  height: 40px;
-  border: 3px solid grey;
-  border-radius: 15px;
+/* STYLING SERC ANALYSER */
+
+.analyser-div{
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: column wrap;
+  gap:10px;
 }
+.queue-div{
+  display:flex;
+  justify-content: center;
+  width:50%;
+  align-items: center;
+  flex-flow:column wrap;
+  border:none;
+  background-color: whitesmoke;
+  border-radius: 8px;
+} 
+
