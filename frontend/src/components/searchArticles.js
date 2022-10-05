@@ -12,11 +12,11 @@ function SearchArticles(){
 
    
    useEffect(()=>{
-    
     if(localStorage.getItem('dataKey') == null){
       localStorage.setItem('dataKey', '[]');
     }
    })
+
     useEffect(()=> {
         fetch('http://localhost:8082/')
         .then((response) => response.json())
@@ -52,7 +52,9 @@ function SearchArticles(){
     }
     const onChange=(event)=>{
       setValue(event.target.value);
-     
+      old_data = JSON.parse(localStorage.getItem('dataKey'));
+      localStorage.setItem('dataKey', JSON.stringify(old_data));
+      setDummyArr(old_data);
     }
     const addSearch= ()=>{
       old_data = JSON.parse(localStorage.getItem('dataKey'));
@@ -62,6 +64,7 @@ function SearchArticles(){
 
       localStorage.setItem('dataKey', JSON.stringify(old_data));
       setDummyArr(old_data);
+      
     }
    
 
