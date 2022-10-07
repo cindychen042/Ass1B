@@ -4,7 +4,6 @@ import { BrowserRouter as Router,Route, Routes} from 'react-router-dom';
 import DisplayArticles from './components/articleDisplay';
 import SercAnalyser from './components/sercanalyser';
 import SearchArticles from './components/searchArticles';
-import SercAnalyser from './components/sercanalyser';
 import ManageArticles from './components/manageArticle';
 import View from './components/view';
 

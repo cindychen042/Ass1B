@@ -90,3 +90,18 @@
   border-radius: 8px;
 } 
 
+
+.searchBar{
+  margin-left:20%;
+  margin-top: 20px;
+  margin-right: 20px;
+  height: 30px;
+  width: 50%;
+}
+
+.dropdown{
+  margin-left:20%;
+  border: 1px solid;
+  border-color: black;
+  width: 51%;
+}
