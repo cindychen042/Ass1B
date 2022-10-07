@@ -30,10 +30,10 @@ return (
     </TableRow>
     </TableHead>
     <TableBody>
-    {article.map((data,id) => {
+    {article.map((data) => {
      return (
        <TableRow>
-        <TableCell>{id+1}</TableCell>
+        <TableCell>{data._id}</TableCell>
         <TableCell>{data.title}</TableCell>
             <TableCell>{data.authors}</TableCell>
             <TableCell>{data.source}</TableCell>
@@ -44,13 +44,14 @@ return (
             <TableCell>{data.journal}</TableCell>
             <TableCell>{data.method}</TableCell>
           <TableCell>
-          <Link to={`view/${id+1}`}>View</Link>
+          <Link to={`view/${data._id}`}>View</Link>
           </TableCell>
         </TableRow>
    )})}
     </TableBody>
       </Table>
     </div>
+
 
 );
 }
