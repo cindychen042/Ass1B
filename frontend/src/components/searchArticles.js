@@ -5,6 +5,17 @@ import MainPage from "./mainpage";
  
 function SearchArticles(){
     const[articles, setArticles] = useState([]);
+    const[value, setValue] = useState("");
+    let [old_data] = useState([]);
+    let new_data = value;
+    const[dummArr, setDummyArr] = useState([]);
+
+   
+   useEffect(()=>{
+    if(localStorage.getItem('dataKey') == null){
+      localStorage.setItem('dataKey', '[]');
+    }
+   })
 
     useEffect(()=> {
         fetch('http://localhost:8082/')
@@ -31,13 +42,74 @@ function SearchArticles(){
     
     ];
     
-    
+    const search= (data) => {
+      return data.filter(item=> item.title.includes(value));
+    }
+   
+    const onSearch = (data) => {
+      setValue(data);
+      addSearch();
+    }
+    const onChange=(event)=>{
+      setValue(event.target.value);
+      old_data = JSON.parse(localStorage.getItem('dataKey'));
+      localStorage.setItem('dataKey', JSON.stringify(old_data));
+      setDummyArr(old_data);
+    }
+    const addSearch= ()=>{
+      old_data = JSON.parse(localStorage.getItem('dataKey'));
+      if(!old_data.includes(new_data)){
+        old_data.push(new_data);
+      }
+
+      localStorage.setItem('dataKey', JSON.stringify(old_data));
+      setDummyArr(old_data);
+      
+    }
+   
 
     return (
       <div style={{height: 680, width: '100%' }}>
         <MainPage></MainPage>
+        <input 
+          type = "text"
+          placeholder="Search SE method"
+          className='searchBar'
+          height= '50'
+          value = {value}
+          onChange={onChange}
+        />
+        <button style ={{
+            height:50,
+            width: '100px',
+            border: '50px',
+            borderRadius: '25px',
+            color: 'black',
+            backgroundClip:'grey'}}
+            type='submit'
+            onClick={()=> onSearch(value)}
+            >
+            Search
+        </button>
+
+        <div className = "dropdown">
+          {dummArr.filter(item =>{
+            const searchTerm = value.toLowerCase()
+            const titleName = item.toLowerCase()
+            return searchTerm && titleName.startsWith(searchTerm) && titleName !==searchTerm;
+          })
+          .map((item)=>(
+            <div className="dropdown-row" key = {item} onClick={()=>{}}
+            >
+              {item} 
+            </div>)
+          )}
+        </div>
+
+        
+        
         <DataGrid
-          rows={articles}
+          rows={search(articles)}
           columns={columns}
           pageSize={10}
           rowsPerPageOptions={[3]}
