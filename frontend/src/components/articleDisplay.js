@@ -7,7 +7,6 @@ import MainPage from './mainpage.js';
 const Table = ({columns, data}) => {
  
 
-    //console.log(articles.filter(item=> item.title.includes("experimental")));
 
 const {
     getTableProps,
@@ -164,7 +163,7 @@ function DisplayArticles(){
             <Styles>
                 <MainPage></MainPage>
                 
-                <select onChange={(e)=>{onSelectionChange(e)}}>
+                <select  className='dropdown' onChange={(e)=>{onSelectionChange(e)}}>
                     <option  value=''>Select an option...</option>
                     <option value='TDD'>TDD</option>
                     <option value='Mob Programming'>Mob Programming</option>

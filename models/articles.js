@@ -14,7 +14,8 @@ const articleSchema = new mongoose.Schema({
   claim: { type: String },
   evidence: { type: String },
   status: {type:String,default:'pending',required:true},
-  method:{type:String,required:true,default:'TDD' }
+  method:{type:String,required:true,default:'TDD' },
+  edited:{type:Boolean,default:false}
 });
 
 const Article = mongoose.model("Article", articleSchema,'articles');
