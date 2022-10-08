@@ -12,8 +12,11 @@ function MainPage(){
             <div className='link'>
             <Link to='/search' style={{textDecoration:'none',color:'white'}}>Search For an Article</Link>
             </div>
-            <div className='link4'>
-            <Link to='/list' style={{textDecoration:'none',color:'white'}}>Moderator</Link>
+            <div className='link'>
+            <Link to='/list' style={{textDecoration:'none',color:'white'}}>Admin</Link>
+            </div>
+            <div className='link'>
+            <Link to='/analyser/articles' style={{textDecoration:'none',color:'white'}}>Analyser</Link>
             </div>
         </div>
 

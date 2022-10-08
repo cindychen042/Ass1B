@@ -5,7 +5,7 @@
   justify-content: space-evenly;
   align-items: center;
   width:100%;
-  background-color: #404040;
+  background: #1A1E23;
   height:60px;
   text-align: center;
   vertical-align: center;
@@ -16,11 +16,13 @@
 .link{
   height:40px;
   width:190px;
-  transition: all 0.4s ease-in-out;
+  transition: all 0.3s ease-in-out;
 }
 
 .link:hover{
-  background-color: aqua;
+
+  scale:calc(1.1);
+  border-bottom:3px solid #1F51FF;
 }
 
 
@@ -90,3 +92,9 @@
   border-radius: 8px;
 } 
 
+
+/* Styling the main page */
+
+.dropdown{
+  outline:none;
+}

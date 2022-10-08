@@ -1,7 +1,8 @@
 import {useState,useEffect,} from 'react';
 import { useNavigate,useParams } from 'react-router-dom';
 import axios from 'axios';
-import { Button, Dialog } from '@mui/material';
+import { Button, Dialog, Menu, MenuItem,Fade} from '@mui/material';
+import NotificationsIcon from '@mui/icons-material/Notifications';
 import MainPage from './mainpage';
 
 
@@ -13,11 +14,21 @@ function SercAnalyser(){
     const {title,authors,journal,number,pages,doi,pubyear,source,evidence,claim,volume,method,status} = articleOnEdit
     const [isEdited,setIsEdited] = useState(false) // if article has been edited, the useEffect function will be invoked again to actually fetch the article again 
     //with the updated values// this state will be put in useEffect dependency array in order for the function to invoke on every update
-    const [notify,setNotify] = useState(0) //this state will be used in sprint 2
     const [open,setOpen] = useState(false) //we are going to use a dialog, so this state is going to control opening/closing the dialog
     const [id_,setId_] = useState(null) // to set the orginal article id
     const [switchPanel,setSwitchPanel] = useState('') // to switch between the edited articles and the articles in queue
-    const [deleted,setDeleted] = useState([]) 
+    const [deleted,setDeleted] = useState([])
+    const [notifColor,setNotifColor] = useState('') // to switch notifcation icon color based on article availability in queue
+
+
+    const [anchorEl, setAnchorEl] = useState(null);
+    const open_ = Boolean(anchorEl);
+    const handleMenu = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
     const handleClick = (e)=>{
         setSwitchPanel(e.target.name)
         console.log(e.target.name)
@@ -29,14 +40,12 @@ function SercAnalyser(){
         axios.get('http://localhost:8082/analyser/articles/').then((res)=>{
             setArticlesInQueue(res.data)
             console.log(res.data)
-
-        }).catch((e)=>{
-            console.log(e.response.data)
+            }).catch((e)=>{
+            console.log(e)
         })
-    },[])
+    },[isEdited])
+
     // this effect is implemented to receive all articles in queue
-
-
     const editButtonById = (id)=>{
 
         axios.get(`http://localhost:8082/${id}/`).then((res)=>{
@@ -61,20 +70,28 @@ function SercAnalyser(){
     const submitChange = (e,id)=>{
         e.preventDefault()
         axios.put(`http://localhost:8082/articles/${id}`,articleOnEdit).then((res)=>{
+            setIsEdited(true)
+            setOpen(false)
+            setSwitchPanel('edited/completed')
+            console.log(res.data)
 
 
         })
-        //ONCE YOU SUBMIT, REMOVE THE ARTICLE FROM ANALYSER TABLE
     }
 
+    
+
     const deleteArticle = (e,id)=>{
+        /*
         e.preventDefault()
         axios.delete(`http://localhost:8082/${id}`,id).then((res)=>{
             setArticlesInQueue(articlesInQueue.filter((article)=>{
                 return article.id!== id
+
             }))
         }
         )
+        */
     }
         // to delete a specific article.
         // once deleted, add the deleted article to the deletedarticle table in the database
@@ -96,6 +113,7 @@ function SercAnalyser(){
                 <Button  onClick={(e)=>editButtonById(article.articleId)}>Edit</Button>
                 <Dialog open={open} fullWidth onClose={(e)=>setOpen(false)}>
                 <div className='post-form'>
+        
                     <form  className='post-page' onSubmit={(e)=>submitChange(e,article.articleId)} method='put'>
                     <input required name='title' value={title} className='title' placeholder='insert the title' onChange={(e)=>handleChange(e)}/>
                     <input required name='authors' value={authors} className='title' placeholder='insert the authors name/s' onChange={(e)=>handleChange(e)}/>
@@ -127,7 +145,7 @@ function SercAnalyser(){
         deleted.map((article)=>{
             return(
 
-            <div className='analyser-div'>
+            <div className='new-div'>
             <div required name='title'  className='title' placeholder='insert the title' onChange={(e)=>handleChange(e)}>{article.title}</div>
             <div required name='authors'  className='title' placeholder='insert the authors name/s' onChange={(e)=>handleChange(e)}>{article.authors}</div>
             <div name='source'  className='title' placeholder="insert the source url" onChange={(e)=>handleChange(e)}>{article.sources}</div>
@@ -152,7 +170,31 @@ function SercAnalyser(){
         return(
             <div className='analyser-div'>
                 <MainPage/>
-                <span>
+                <Button
+        id="fade-button"
+        aria-controls={open_ ? 'fade-menu' : undefined}
+        aria-haspopup="true"
+        aria-expanded={open_ ? 'true' : undefined}
+        onClick={handleMenu}
+      >
+        <div style={{width:'100%'}}>
+        <NotificationsIcon color={articlesInQueue.length?'primary':'action'} fontSize='large'></NotificationsIcon>
+        </div>
+      </Button>
+
+      <Menu
+        id="fade-menu"
+        MenuListProps={{
+          'aria-labelledby': 'fade-button',
+        }}
+        anchorEl={anchorEl}
+        open={open_}
+        onClose={handleClose}
+        TransitionComponent={Fade}
+      >
+          {<MenuItem onClick={handleClose}>{articlesInQueue.length?<span>New Articles has been added to the queue</span>:<span>Nothing to show.</span>}</MenuItem>}
+      </Menu>
+                <span >
             <Button name='queue' onClick={(e)=>handleClick(e)} >Queue</Button>
             <Button name='edited/completed' onClick={(e)=>handleClick(e)} style={{'borderBottom':'2px solid yellowgreen'}}>Completed Articles</Button>
             <Button name='deleted' onClick={(e)=>handleClick(e)} >Deleted Articles</Button>
@@ -170,6 +212,27 @@ function SercAnalyser(){
     else if (switchPanel ==='deleted'){
         <div className='analyser-div'>
             <MainPage/>
+            <Button
+        id="fade-button"
+        aria-controls={open_ ? 'fade-menu' : undefined}
+        aria-haspopup="true"
+        aria-expanded={open_ ? 'true' : undefined}
+        onClick={handleMenu}
+      >
+        <NotificationsIcon color={articlesInQueue.length?'primary':'action'} fontSize='large'></NotificationsIcon>
+      </Button>
+      <Menu
+        id="fade-menu"
+        MenuListProps={{
+          'aria-labelledby': 'fade-button',
+        }}
+        anchorEl={anchorEl}
+        open={open_}
+        onClose={handleClose}
+        TransitionComponent={Fade}
+      >
+        {<MenuItem onClick={handleClose}>{articlesInQueue.length?<span>New Articles has been added to the queue</span>:<span>Nothing to show.</span>}</MenuItem>}
+      </Menu>
             <span>
             <Button name='queue' onClick={(e)=>handleClick(e)}>Queue</Button>
             <Button name='edited/completed' onClick={(e)=>handleClick(e)}>Completed Articles</Button>
@@ -186,6 +249,27 @@ function SercAnalyser(){
         return(
             <div className='analyser-div'>
                 <MainPage/>
+                <Button
+        id="fade-button"
+        aria-controls={open_ ? 'fade-menu' : undefined}
+        aria-haspopup="true"
+        aria-expanded={open_ ? 'true' : undefined}
+        onClick={handleMenu}
+      >
+        <NotificationsIcon color={articlesInQueue.length?'primary':'action'} fontSize='large'></NotificationsIcon>
+      </Button>
+      <Menu
+        id="fade-menu"
+        MenuListProps={{
+          'aria-labelledby': 'fade-button',
+        }}
+        anchorEl={anchorEl}
+        open={open_}
+        onClose={handleClose}
+        TransitionComponent={Fade}
+      >
+          {<MenuItem onClick={handleClose}>{articlesInQueue.length?<span>New Articles has been added to the queue</span>:<span>Nothing to show.</span>}</MenuItem>}
+      </Menu>
                 <span>
                 <Button name='queue' onClick={(e)=>handleClick(e)} style={{'borderBottom':'2px solid gray'}}>Queue</Button>
                 <Button name='edited/completed' onClick={(e)=>handleClick(e)}>Completed Articles</Button>

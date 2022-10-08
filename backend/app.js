@@ -58,7 +58,6 @@ app.post('/analyser/articles',jsonParser,async function(req,res){
     let data = {
         ...req.body
     }
-    console.log(data)
     const article_ = await Article.find(data)
     if(article_){
         const articleSentToQueue = new QueueArticles()
@@ -101,6 +100,7 @@ app.put('/articles/:id',jsonParser, async function (req,res){
     article.volume = volume
     article.edited = true
     article.save()
+    console.log(article)
     
     res.send("Article has been updated.")
 })
