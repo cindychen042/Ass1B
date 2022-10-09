@@ -38,7 +38,7 @@ function SercAnalyser(){
 
 
     useEffect(()=>{
-        axios.get(`${API_ENDPOINT}/analyser/articles/`).then((res)=>{
+        axios.get(`${API_ENDPOINT}/api/analyser/articles/`).then((res)=>{
             setArticlesInQueue(res.data)
             console.log(res.data)
             }).catch((e)=>{
@@ -49,7 +49,7 @@ function SercAnalyser(){
     // this effect is implemented to receive all articles in queue
     const editButtonById = (id)=>{
 
-        axios.get(`${API_ENDPOINT}/${id}/`).then((res)=>{
+        axios.get(`${API_ENDPOINT}/api/${id}/`).then((res)=>{
             setArticleOnEdit(res.data)
             setOpen(true)
 
@@ -70,7 +70,7 @@ function SercAnalyser(){
     }
     const submitChange = (e,id)=>{
         e.preventDefault()
-        axios.put(`${API_ENDPOINT}/articles/${id}`,articleOnEdit).then((res)=>{
+        axios.put(`${API_ENDPOINT}/api/articles/${id}`,articleOnEdit).then((res)=>{
             setIsEdited(true)
             setOpen(false)
             setSwitchPanel('edited/completed')
@@ -98,7 +98,7 @@ function SercAnalyser(){
         // once deleted, add the deleted article to the deletedarticle table in the database
 
     useEffect(()=>{
-        axios.get(`${API_ENDPOINT}/deleted`).then((res)=>{
+        axios.get(`${API_ENDPOINT}/api/deleted`).then((res)=>{
             console.log(res.data)
             setDeleted(res.data)
         })

@@ -18,7 +18,7 @@ function SearchArticles(){
    })
 
     useEffect(()=> {
-        fetch(`${API_ENDPOINT}/`)
+        fetch(`${API_ENDPOINT}/api/`)
         .then((response) => response.json())
         .then((json)=> {
             setArticles(json)
