@@ -8,6 +8,7 @@ const path = require("path");
 const parser = require('body-parser'); // to serialize the requests to json form
 const app = express();
 const mongoose = require('mongoose')
+const http = require('http');
 
 app.use(express.static(path.resolve(__dirname, "../frontend/build")));
 
@@ -136,12 +137,21 @@ app.get("*", function (request, response) {
   });
 
 
+  const httpServer = new http.Server(app);
+  const server = httpServer.listen(port, () =>
+    console.log(`Server running on port ${port}`)
+  );
+  
+
+
 
 
 const port = process.env.PORT || 8082;
 
 
 
+module.exports ={
+    server,
+}
 
-
-app.listen(port, () => console.log(`Server running on port ${port}`))
+"app.listen(port, () => console.log(`Server running on port ${port}`))"
