@@ -105,6 +105,7 @@ function SercAnalyser(){
     },[])
 
     const mappingArticles = (articles)=>{
+        if(articles){
         return(
         articles.map((article)=>{
             return(
@@ -139,6 +140,11 @@ function SercAnalyser(){
             )
         })
         )
+    }
+    return(
+        null
+        
+    )
     }
 
     const mapDeleted = ()=>{

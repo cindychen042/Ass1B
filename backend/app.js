@@ -10,10 +10,6 @@ const app = express();
 const mongoose = require('mongoose')
 
 app.use(express.static(path.resolve(__dirname, "../frontend/build")));
-// Step 2:
-app.get("*", function (request, response) {
-  response.sendFile(path.resolve(__dirname, "../frontend/build/index.html"));
-});
 
 // Step 2:
 app.use(cors({ origin: true, credentials: true }));
@@ -31,7 +27,6 @@ app.get('/',async function(req,res){
 
 
 
-//app.get('/:id',async function(req,res){
 app.get('/:id([0-9a-fA-F]{24})',async function(req,res){
     const article = await Article.findById(req.params.id)
     res.send(article)
@@ -137,6 +132,14 @@ app.get('/deleted',async function(req,res){
     res.send(allDeleted)
 }
 )
+
+
+app.get("*", function (request, response) {
+    response.sendFile(path.resolve(__dirname, "../frontend/build/index.html"));
+  });
+
+
+
 
 const port = process.env.PORT || 8082;
 
