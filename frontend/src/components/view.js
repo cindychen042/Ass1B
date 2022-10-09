@@ -12,7 +12,7 @@ const View =()=>{
    const {id} = useParams();
 
    useEffect(()=>{
-    axios.get(`${API_ENDPOINT}/${id}`).then(res=>setArticle1(res.data));
+    axios.get(`${API_ENDPOINT}/${id}/`).then(res=>setArticle1(res.data));
    },[]);
 
    const sendToAnalyst = (e)=>{

@@ -128,6 +128,7 @@ function DisplayArticles(){
     let [selection,setSelection] = useState({data:'',value:''}); //creating a selection state, to control user selection
     useEffect(()=>{
         axios.get(`${API_ENDPOINT}/`).then((res)=>{
+          console.log(API_ENDPOINT)
             if(selection.value===''){
               console.log(res.data)
                 setArticlesList(
