@@ -4,7 +4,7 @@ node_modules
 # dependencies
 /node_modules
 
-.env
+/config/.env
 =======
 /frontend/my-app/node_modules
 /.pnp
