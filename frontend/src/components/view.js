@@ -2,6 +2,7 @@ import axios from "axios"
 import { useParams ,useNavigate} from "react-router-dom";
 import { React,useEffect,useState} from "react";
 import MainPage from "./mainpage";
+import {API_ENDPOINT} from '../api/index.js'
 
 
 const View =()=>{  
@@ -11,12 +12,12 @@ const View =()=>{
    const {id} = useParams();
 
    useEffect(()=>{
-    axios.get(`http://localhost:8082/${id}`).then(res=>setArticle1(res.data));
+    axios.get(`${API_ENDPOINT}/${id}`).then(res=>setArticle1(res.data));
    },[]);
 
    const sendToAnalyst = (e)=>{
     e.preventDefault()
-    axios.post('http://localhost:8082/analyser/articles/',article1).then((res)=>{
+    axios.post(`${API_ENDPOINT}/analyser/articles/`,article1).then((res)=>{
         redirect('/analyser/articles')
     }).catch((e)=>{
         console.log(e.response.data)

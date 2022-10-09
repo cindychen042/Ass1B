@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { DataGrid } from '@mui/x-data-grid';
 import MainPage from "./mainpage";
-
+import {API_ENDPOINT} from '../api/index.js'
  
 function SearchArticles(){
     const[articles, setArticles] = useState([]);
@@ -18,7 +18,7 @@ function SearchArticles(){
    })
 
     useEffect(()=> {
-        fetch('http://localhost:8082/')
+        fetch(`${API_ENDPOINT}/`)
         .then((response) => response.json())
         .then((json)=> {
             setArticles(json)
