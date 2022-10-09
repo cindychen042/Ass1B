@@ -4,6 +4,7 @@ const DeletedArticle =  require('../models/deletedarticles')
 const express = require('express');
 const connectDB = require('../config/db');
 const cors = require('cors')
+const path = require("path");
 const parser = require('body-parser'); // to serialize the requests to json form
 const app = express();
 const mongoose = require('mongoose')
