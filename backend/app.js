@@ -26,7 +26,7 @@ let jsonParser = parser.json() //parse req.body to json
  
 
 app.use('/api',articles)
-app.use('/api/analyser/',analyser)
+app.use('/api/analyser/articles',analyser)
 
 /*
 app.get('/',async function(req,res){
