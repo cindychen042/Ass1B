@@ -132,6 +132,9 @@ app.get('/deleted',async function(req,res){
 )
 
 
+const port = process.env.PORT || 8082;
+
+
 app.get("*", function (request, response) {
     response.sendFile(path.resolve(__dirname, "../frontend/build/index.html"));
   });
@@ -146,12 +149,9 @@ app.get("*", function (request, response) {
 
 
 
-const port = process.env.PORT || 8082;
-
-
 
 module.exports ={
     server,
 }
 
-"app.listen(port, () => console.log(`Server running on port ${port}`))"
+//app.listen(port, () => console.log(`Server running on port ${port}`))
