@@ -3,10 +3,7 @@ const Article = require('../../models/articles')
 const QueueArticles = require('../../models/analyser')
 const DeletedArticle =  require('../../models/deletedarticles')
 const express = require('express');
-const connectDB = require('../config/db');
 const cors = require('cors')
-const path = require("path");
-const parser = require('body-parser'); // to serialize the requests to json form
 const router = express.Router();
 router.get('/analyser/articles',async function(req,res){
     const articlesInQueue = await QueueArticles.find()
