@@ -3,6 +3,7 @@ import axios from "axios"
 import { useNavigate } from "react-router-dom";
 import { useState} from "react";
 import MainPage from "./mainpage";
+import {API_ENDPOINT} from '../api/index.js'
 
 
 
@@ -26,7 +27,7 @@ function Articles(){
 
     const handleSubmit = (e)=>{
         e.preventDefault()
-        axios.post('http://localhost:8082/articles',content).then((res)=>{
+        axios.post(`${API_ENDPOINT}/articles/`,content).then((res)=>{
             setOpenDialog(
                 {
                     value:!value,
