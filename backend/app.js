@@ -10,8 +10,8 @@ const app = express();
 const mongoose = require('mongoose')
 const http = require('http');
 
-const articles = require('./routes/api/articleroute');
-const analyst = require('./routes/api/analyserroute');
+const articles = require('../routes/api/articleroute');
+const analyser = require('../routes/api/analyserroute');
 
 
 app.use(express.static(path.resolve(__dirname, "../frontend/build")));
@@ -25,8 +25,8 @@ connectDB();
 let jsonParser = parser.json() //parse req.body to json
  
 
-app.use('/api',articleroute)
-app.use('/api/analyser/',analyserroute)
+app.use('/api',articles)
+app.use('/api/analyser/',analyser)
 
 /*
 app.get('/',async function(req,res){
