@@ -3,6 +3,7 @@ const QueueArticles = require('../../models/analyser')
 const DeletedArticle =  require('../../models/deletedarticles')
 const express = require('express');
 const cors = require('cors')
+const router = express.Router();
 router.get('/',async function(req,res){
     await Article.find().then((articles)=>{res.send(articles.json())})
 })
