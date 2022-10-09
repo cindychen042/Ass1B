@@ -9,10 +9,10 @@ const parser = require('body-parser'); // to serialize the requests to json form
 const app = express();
 const mongoose = require('mongoose')
 
-app.use(express.static(path.resolve(__dirname, "./frontend/build")));
+app.use(express.static(path.resolve(__dirname, "build")));
 // Step 2:
 app.get("*", function (request, response) {
-  response.sendFile(path.resolve(__dirname, "./frontend/build", "index.html"));
+  response.sendFile(path.resolve(__dirname, "build", "index.html"));
 });
 
 // Step 2:
