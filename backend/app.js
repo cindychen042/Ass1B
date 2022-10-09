@@ -1,6 +1,6 @@
 const Article = require('../models/articles')
 const QueueArticles = require('../models/analyser')
-const DeletedArticle =  require('../models/deletedArticles')
+const DeletedArticle =  require('../models/deletedarticles')
 const express = require('express');
 const connectDB = require('../config/db');
 const cors = require('cors')
