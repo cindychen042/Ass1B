@@ -3,7 +3,7 @@ import { DataGrid } from '@mui/x-data-grid';
 import MainPage from "./mainpage";
 
  
-function SearchArticles(){
+function SearchArticles({dataTestId,dataTestId1, dataTestId2}){
     const[articles, setArticles] = useState([]);
     const[value, setValue] = useState("");
     let [old_data] = useState([]);
@@ -42,6 +42,7 @@ function SearchArticles(){
     
     ];
     
+    
     const search= (data) => {
       return data.filter(item=> item.title.includes(value));
     }
@@ -56,6 +57,7 @@ function SearchArticles(){
       localStorage.setItem('dataKey', JSON.stringify(old_data));
       setDummyArr(old_data);
     }
+
     const addSearch= ()=>{
       old_data = JSON.parse(localStorage.getItem('dataKey'));
       if(!old_data.includes(new_data)){
@@ -66,17 +68,19 @@ function SearchArticles(){
       setDummyArr(old_data);
       
     }
-   
+    
 
     return (
-      <div style={{height: 680, width: '100%' }}>
+      <div testID="searchArticle-1" style={{height: 680, width: '100%' }}>
         <MainPage></MainPage>
+        <h1 data-testid={dataTestId}>{value}</h1>
         <input 
           type = "text"
           placeholder="Search SE method"
           className='searchBar'
           height= '50'
           value = {value}
+          data-testid={dataTestId1}
           onChange={onChange}
         />
         <button style ={{
@@ -87,6 +91,7 @@ function SearchArticles(){
             color: 'black',
             backgroundClip:'grey'}}
             type='submit'
+            data-testid={dataTestId2}
             onClick={()=> onSearch(value)}
             >
             Search
