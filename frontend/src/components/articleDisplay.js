@@ -171,7 +171,7 @@ function DisplayArticles(){
                     <option value='TDD'>TDD</option>
                     <option value='Mob Programming'>Mob Programming</option>
                 </select>
-                {articlesList.length?<div>"No Data is shown"</div>:
+                {!articlesList.length?<div>"No Data is shown"</div>:
                 <Table
             data={articlesList}
             columns={tablecolumns}
