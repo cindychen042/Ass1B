@@ -26,7 +26,6 @@ app.get('/',async function(req,res){
 })
 
 
-
 app.get('/:id([0-9a-fA-F]{24})',async function(req,res){
     const article = await Article.findById(req.params.id)
     res.send(article)
@@ -109,8 +108,6 @@ app.put('/articles/:id',jsonParser, async function (req,res){
 })
 
 
-
-// down here.....
 
 app.delete('/:id([0-9a-fA-F]{24})',jsonParser, async function(req, res){
     const article = await Article.findById(req.params.id).then((res)=>{
