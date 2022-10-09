@@ -4,7 +4,13 @@ const QueueArticles = require('../../models/analyser')
 const DeletedArticle =  require('../../models/deletedarticles')
 const express = require('express');
 const cors = require('cors')
+const path = require("path");
+const parser = require('body-parser'); // to serialize the requests to json form
 const router = express.Router();
+
+let jsonParser = parser.json() //parse req.body to json
+
+
 router.get('/analyser/articles',async function(req,res){
     const articlesInQueue = await QueueArticles.find()
     res.send(articlesInQueue)
