@@ -209,7 +209,7 @@ function SercAnalyser(){
     }
 
 
-    else if (switchPanel ==='deleted'){
+    if (switchPanel ==='deleted'){
         <div className='analyser-div'>
             <MainPage/>
             <Button
