@@ -1,12 +1,15 @@
 const Article = require('../models/articles')
 const QueueArticles = require('../models/analyser')
-const DeletedArticle =  require('../models/deletedArticles')
+const DeletedArticle =  require('../models/deletedarticles')
 const express = require('express');
 const connectDB = require('../config/db');
 const cors = require('cors')
+const path = require("path");
 const parser = require('body-parser'); // to serialize the requests to json form
 const app = express();
 const mongoose = require('mongoose')
+
+app.use(express.static(path.resolve(__dirname, "../frontend/build")));
 
 // Step 2:
 app.use(cors({ origin: true, credentials: true }));
@@ -23,8 +26,6 @@ app.get('/',async function(req,res){
 })
 
 
-
-//app.get('/:id',async function(req,res){
 app.get('/:id([0-9a-fA-F]{24})',async function(req,res){
     const article = await Article.findById(req.params.id)
     res.send(article)
@@ -108,8 +109,6 @@ app.put('/articles/:id',jsonParser, async function (req,res){
 
 
 
-// down here.....
-
 app.delete('/:id([0-9a-fA-F]{24})',jsonParser, async function(req, res){
     const article = await Article.findById(req.params.id).then((res)=>{
         console.log("this is res")
@@ -130,6 +129,14 @@ app.get('/deleted',async function(req,res){
     res.send(allDeleted)
 }
 )
+
+
+app.get("*", function (request, response) {
+    response.sendFile(path.resolve(__dirname, "../frontend/build/index.html"));
+  });
+
+
+
 
 const port = process.env.PORT || 8082;
 

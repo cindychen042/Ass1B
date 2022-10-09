@@ -10,6 +10,7 @@ import View from './components/view';
 function App() {
   return (
     <div>
+
     <Router>
       <Routes>
       <Route exact path='articles' element={<Articles/>}></Route>

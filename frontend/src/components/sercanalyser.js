@@ -4,6 +4,7 @@ import axios from 'axios';
 import { Button, Dialog, Menu, MenuItem,Fade} from '@mui/material';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import MainPage from './mainpage';
+import {API_ENDPOINT} from '../api/index.js'
 
 
 function SercAnalyser(){
@@ -37,7 +38,7 @@ function SercAnalyser(){
 
 
     useEffect(()=>{
-        axios.get('http://localhost:8082/analyser/articles/').then((res)=>{
+        axios.get(`${API_ENDPOINT}/analyser/articles/`).then((res)=>{
             setArticlesInQueue(res.data)
             console.log(res.data)
             }).catch((e)=>{
@@ -48,7 +49,7 @@ function SercAnalyser(){
     // this effect is implemented to receive all articles in queue
     const editButtonById = (id)=>{
 
-        axios.get(`http://localhost:8082/${id}/`).then((res)=>{
+        axios.get(`${API_ENDPOINT}/${id}/`).then((res)=>{
             setArticleOnEdit(res.data)
             setOpen(true)
 
@@ -69,7 +70,7 @@ function SercAnalyser(){
     }
     const submitChange = (e,id)=>{
         e.preventDefault()
-        axios.put(`http://localhost:8082/articles/${id}`,articleOnEdit).then((res)=>{
+        axios.put(`${API_ENDPOINT}/articles/${id}`,articleOnEdit).then((res)=>{
             setIsEdited(true)
             setOpen(false)
             setSwitchPanel('edited/completed')
@@ -84,7 +85,7 @@ function SercAnalyser(){
     const deleteArticle = (e,id)=>{
         /*
         e.preventDefault()
-        axios.delete(`http://localhost:8082/${id}`,id).then((res)=>{
+        axios.delete(`${API_ENDPOINT}/${id}`,id).then((res)=>{
             setArticlesInQueue(articlesInQueue.filter((article)=>{
                 return article.id!== id
 
@@ -97,13 +98,14 @@ function SercAnalyser(){
         // once deleted, add the deleted article to the deletedarticle table in the database
 
     useEffect(()=>{
-        axios.get('http://localhost:8082/deleted').then((res)=>{
+        axios.get(`${API_ENDPOINT}/deleted`).then((res)=>{
             console.log(res.data)
             setDeleted(res.data)
         })
     },[])
 
     const mappingArticles = (articles)=>{
+        if(articles){
         return(
         articles.map((article)=>{
             return(
@@ -138,6 +140,11 @@ function SercAnalyser(){
             )
         })
         )
+    }
+    return(
+        null
+        
+    )
     }
 
     const mapDeleted = ()=>{
@@ -209,7 +216,8 @@ function SercAnalyser(){
     }
 
 
-    else if (switchPanel ==='deleted'){
+    if (switchPanel ==='deleted'){
+        return(
         <div className='analyser-div'>
             <MainPage/>
             <Button
@@ -242,6 +250,7 @@ function SercAnalyser(){
             {mapDeleted()}
 
         </div>
+        )
     }
 
     else {

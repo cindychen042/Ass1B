@@ -2,11 +2,14 @@ import React,{useState,useEffect} from 'react'
 import axios from 'axios'
 import {Table, TableHead,TableBody,TableRow,TableCell} from '@mui/material';
 import {Link} from "react-router-dom";
+import {API_ENDPOINT} from  '../api/index.js';
+
+
 function List (){
     const [article,setArticle] = useState([])
 
     useEffect(()=>{
-        axios.get('http://localhost:8082/').then(res=>setArticle(res.data))
+        axios.get(`${API_ENDPOINT}/`).then(res=>setArticle(res.data))
        },[])
 
 

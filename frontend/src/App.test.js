@@ -6,10 +6,17 @@ import '@testing-library/jest-dom'
 
 
 
+
     
 it('renders without crashing', () => {
   const div = document.createElement('div');
   ReactDOM.render(<App />, div);
   ReactDOM.unmountComponentAtNode(div);
+  
+test('renders learn react link', () => {
+  render(<App />);
+  const linkElement = screen.getByText(/Hidden text/);
+  expect(linkElement).toBeInTheDocument();
+
 });
 
