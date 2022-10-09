@@ -33,5 +33,5 @@ router.post('/articles',jsonParser,(req,res)=>{
 })
 
 
-
+module.exports = router
 

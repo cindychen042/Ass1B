@@ -73,3 +73,5 @@ router.put('/articles/:id',jsonParser, async function (req,res){
     
     res.send("Article has been updated.")
 })
+
+module.exports = router
