@@ -10,17 +10,25 @@ const app = express();
 const mongoose = require('mongoose')
 const http = require('http');
 
+const articles = require('./routes/api/articleroute');
+const analyst = require('./routes/api/analyserroute');
+
+
 app.use(express.static(path.resolve(__dirname, "../frontend/build")));
 
 // Step 2:
 app.use(cors({ origin: true, credentials: true }));
 // Connect Database
+app.use(express.json({ extended: false }));
 connectDB();
 
 let jsonParser = parser.json() //parse req.body to json
  
 
+app.use('/api',articleroute)
+app.use('/api/analyser/',analyserroute)
 
+/*
 app.get('/',async function(req,res){
     const article = await Article.find()
     res.send(article)
@@ -107,6 +115,7 @@ app.put('/articles/:id',jsonParser, async function (req,res){
     
     res.send("Article has been updated.")
 })
+*/
 
 
 
