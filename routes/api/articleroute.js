@@ -11,7 +11,8 @@ let jsonParser = parser.json() //parse req.body to json
 
 
 router.get('/',async function(req,res){
-    await Article.find().then((articles)=>{res.send(articles.json())})
+    const article = await Article.find()
+    res.send(article)
 })
 
 
