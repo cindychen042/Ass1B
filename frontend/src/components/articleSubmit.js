@@ -27,7 +27,7 @@ function Articles(){
 
     const handleSubmit = (e)=>{
         e.preventDefault()
-        axios.post(`${API_ENDPOINT}/articles/`,content).then((res)=>{
+        axios.post(`${API_ENDPOINT}/api/`,content).then((res)=>{
             setOpenDialog(
                 {
                     value:!value,

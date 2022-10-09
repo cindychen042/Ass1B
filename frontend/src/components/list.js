@@ -9,7 +9,7 @@ function List (){
     const [article,setArticle] = useState([])
 
     useEffect(()=>{
-        axios.get(`${API_ENDPOINT}/`).then(res=>setArticle(res.data))
+        axios.get(`${API_ENDPOINT}/api/`).then(res=>setArticle(res.data))
        },[])
 
 
