@@ -4,6 +4,8 @@ import { useTable, useSortBy, usePagination } from 'react-table';
 import tablecolumns from "../components/tablecolumns.js";
 import Styles from './tablestyles.js';
 import MainPage from './mainpage.js';
+import { API_ENDPOINT } from '../api/index';
+
 const Table = ({columns, data}) => {
  
 
@@ -125,7 +127,7 @@ function DisplayArticles(){
     let [articlesList,setArticlesList] = useState([])
     let [selection,setSelection] = useState({data:'',value:''}); //creating a selection state, to control user selection
     useEffect(()=>{
-        axios.get('http://localhost:8082/').then((res)=>{
+        axios.get(`${API_ENDPOINT}/`).then((res)=>{
             if(selection.value===''){
               console.log(res.data)
                 setArticlesList(

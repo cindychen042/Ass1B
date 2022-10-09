@@ -10,7 +10,6 @@ import View from './components/view';
 function App() {
   return (
     <div>
-      <h1 hidden disabled>Hidden text</h1>
 
     <Router>
       <Routes>
