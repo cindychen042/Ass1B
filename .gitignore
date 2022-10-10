@@ -19,7 +19,7 @@ node_modules
 
 # misc
 .env
-default.json
+/config/default.json
 .DS_Store
 .env.local
 .env.development.local
