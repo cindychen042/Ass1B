@@ -18,7 +18,7 @@ function SearchArticles({dataTestId,dataTestId1, dataTestId2}){
    })
 
     useEffect(()=> {
-        fetch(`${API_ENDPOINT}/`)
+        fetch(`${API_ENDPOINT}/api/`)
         .then((response) => response.json())
         .then((json)=> {
             setArticles(json)

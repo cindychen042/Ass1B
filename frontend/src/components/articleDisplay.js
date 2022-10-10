@@ -127,7 +127,8 @@ function DisplayArticles(){
     let [articlesList,setArticlesList] = useState([])
     let [selection,setSelection] = useState({data:'',value:''}); //creating a selection state, to control user selection
     useEffect(()=>{
-        axios.get(`${API_ENDPOINT}/`).then((res)=>{
+        axios.get(`${API_ENDPOINT}/api/`).then((res)=>{
+          console.log(API_ENDPOINT)
             if(selection.value===''){
               console.log(res.data)
                 setArticlesList(
@@ -170,7 +171,7 @@ function DisplayArticles(){
                     <option value='TDD'>TDD</option>
                     <option value='Mob Programming'>Mob Programming</option>
                 </select>
-                {articlesList.length?<div>"No Data is shown"</div>:
+                {!articlesList.length?<div>"No Data is shown"</div>:
                 <Table
             data={articlesList}
             columns={tablecolumns}

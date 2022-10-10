@@ -12,12 +12,12 @@ const View =()=>{
    const {id} = useParams();
 
    useEffect(()=>{
-    axios.get(`${API_ENDPOINT}/${id}`).then(res=>setArticle1(res.data));
+    axios.get(`${API_ENDPOINT}/api/${id}/`).then(res=>setArticle1(res.data));
    },[]);
 
    const sendToAnalyst = (e)=>{
     e.preventDefault()
-    axios.post(`${API_ENDPOINT}/analyser/articles/`,article1).then((res)=>{
+    axios.post(`${API_ENDPOINT}/api/analyser/articles/`,article1).then((res)=>{
         redirect('/analyser/articles')
     }).catch((e)=>{
         console.log(e.response.data)
