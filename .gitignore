@@ -5,6 +5,7 @@ node_modules
 /node_modules
 
 /config/.env
+/config/default.json
 =======
 /frontend/my-app/node_modules
 /.pnp
@@ -17,9 +18,10 @@ node_modules
 # production
 /build
 
+
 # misc
 .env
-/config/default.json
+
 .DS_Store
 .env.local
 .env.development.local
