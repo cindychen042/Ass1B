@@ -3,7 +3,7 @@ import { DataGrid } from '@mui/x-data-grid';
 import MainPage from "./mainpage";
 import {API_ENDPOINT} from '../api/index.js'
  
-function SearchArticles({dataTestId,dataTestId1, dataTestId2}){
+function SearchArticles({dataTestId1, dataTestId2}){
     const[articles, setArticles] = useState([]);
     const[value, setValue] = useState("");
     let [old_data] = useState([]);
@@ -71,9 +71,8 @@ function SearchArticles({dataTestId,dataTestId1, dataTestId2}){
     
 
     return (
-      <div testID="searchArticle-1" style={{height: 680, width: '100%' }}>
+      <div  style={{height: 680, width: '100%' }}>
         <MainPage></MainPage>
-        <h1 data-testid={dataTestId}>{value}</h1>
         <input 
           type = "text"
           placeholder="Search SE method"
