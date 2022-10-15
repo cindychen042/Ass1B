@@ -105,6 +105,7 @@ function SercAnalyser(){
     },[])
 
     const mappingArticles = (articles)=>{
+        console.log(articles)
         if(articles){
         return(
         articles.map((article)=>{
