@@ -42,7 +42,7 @@ function SercAnalyser(){
             setArticlesInQueue(res.data)
             console.log(res.data)
             }).catch((e)=>{
-            console.log(e)
+            console.log(e.response.data)
         })
     },[isEdited])
 
