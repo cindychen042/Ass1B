@@ -143,12 +143,10 @@ app.get('/deleted',async function(req,res){
 
 const port = process.env.PORT || 8082;
 
-/*
 app.get("*", function (request, response) {
     response.sendFile(path.resolve(__dirname, "../frontend/build/index.html"));
   });
 
-  */
 
   const httpServer = new http.Server(app);
   const server = httpServer.listen(port, () =>
