@@ -17,7 +17,7 @@ const View =()=>{
 
    const sendToAnalyst = (e)=>{
     e.preventDefault()
-    axios.post(`${API_ENDPOINT}/api/analyser/articles/`,article1).then((res)=>{
+    axios.post(`${API_ENDPOINT}/api/analyser/analyser/articles/`,article1).then((res)=>{
         redirect('/analyser/articles')
     }).catch((e)=>{
         console.log(e.response.data)

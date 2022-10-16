@@ -10,8 +10,8 @@ const app = express();
 const mongoose = require('mongoose')
 const http = require('http');
 
-const articles = require('../routes/api/articleroute');
-const analyser = require('../routes/api/analyserroute');
+const articles = require('./routes/api/articleroute');
+const analyser = require('./routes/api/analyserroute');
 
 
 app.use(express.static(path.resolve(__dirname, "../frontend/build")));
@@ -26,7 +26,7 @@ let jsonParser = parser.json() //parse req.body to json
  
 
 app.use('/api',articles)
-app.use('/api/analyser/articles',analyser)
+app.use('/api/analyser',analyser)
 
 /*
 app.get('/',async function(req,res){
@@ -143,11 +143,12 @@ app.get('/deleted',async function(req,res){
 
 const port = process.env.PORT || 8082;
 
-
+/*
 app.get("*", function (request, response) {
     response.sendFile(path.resolve(__dirname, "../frontend/build/index.html"));
   });
 
+  */
 
   const httpServer = new http.Server(app);
   const server = httpServer.listen(port, () =>

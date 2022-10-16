@@ -38,7 +38,7 @@ function SercAnalyser(){
 
 
     useEffect(()=>{
-        axios.get(`${API_ENDPOINT}/api/analyser/articles/`).then((res)=>{
+        axios.get(`${API_ENDPOINT}/api/analyser/analyser/articles/`).then((res)=>{
             setArticlesInQueue(res.data)
             console.log(res.data)
             }).catch((e)=>{
@@ -70,7 +70,7 @@ function SercAnalyser(){
     }
     const submitChange = (e,id)=>{
         e.preventDefault()
-        axios.put(`${API_ENDPOINT}/api/articles/${id}`,articleOnEdit).then((res)=>{
+        axios.put(`${API_ENDPOINT}/api/analyser/articles/${id}`,articleOnEdit).then((res)=>{
             setIsEdited(true)
             setOpen(false)
             setSwitchPanel('edited/completed')
@@ -83,16 +83,14 @@ function SercAnalyser(){
     
 
     const deleteArticle = (e,id)=>{
-        /*
         e.preventDefault()
-        axios.delete(`${API_ENDPOINT}/${id}`,id).then((res)=>{
+        axios.delete(`${API_ENDPOINT}/api/${id}`,id).then((res)=>{
             setArticlesInQueue(articlesInQueue.filter((article)=>{
                 return article.id!== id
 
             }))
         }
         )
-        */
     }
         // to delete a specific article.
         // once deleted, add the deleted article to the deletedarticle table in the database
@@ -105,7 +103,6 @@ function SercAnalyser(){
     },[])
 
     const mappingArticles = (articles)=>{
-        console.log(articles)
         if(articles.length){
         return(
         articles.map((article)=>{
@@ -130,6 +127,8 @@ function SercAnalyser(){
                     <input name='number' value={number} className='number' placeholder='insert the number' onChange={(e)=>handleChange(e)}/>
                     <input name='claim' value={claim} className='claim' placeholder='insert the claim' onChange={(e)=>handleChange(e)}/>
                     <input name="evidence" value={evidence} className='evidence' placeholder="insert the evidence" onChange={(e)=>handleChange(e)}/>
+                    <input name='status' value={status} className='status' placeholder="status" onChange={(e)=>handleChange(e)} />
+                    <input name='method' value={method} className='method' placeholder="method" onChange={(e)=>handleChange(e)} />
                     <Button type='submit'>Submit Article</Button>
                     </form>
                     </div>
@@ -255,6 +254,7 @@ function SercAnalyser(){
     }
 
     else {
+        let articles_ = articlesInQueue.filter((article)=>article.edited===false)
 
         return(
             <div className='analyser-div'>
@@ -286,7 +286,7 @@ function SercAnalyser(){
                 <Button name='deleted' onClick={(e)=>handleClick(e)} >Deleted Articles</Button>
                 </span>
                 <h1>SERC QUEUE</h1>
-                {mappingArticles(articlesInQueue)}
+                {mappingArticles(articles_)}
     
             </div>
             // more to implement...

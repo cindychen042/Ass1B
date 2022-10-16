@@ -13,10 +13,5 @@ it('renders without crashing', () => {
   ReactDOM.render(<App />, div);
   ReactDOM.unmountComponentAtNode(div);
   
-test('renders learn react link', () => {
-  render(<App />);
-  const linkElement = screen.getByText(/Hidden text/);
-  expect(linkElement).toBeInTheDocument();
-
-});
+})
 
