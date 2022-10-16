@@ -12,6 +12,7 @@ const http = require('http');
 
 const articles = require('./routes/api/articleroute');
 const analyser = require('./routes/api/analyserroute');
+const deleted = require('./routes/api/deletedroute')
 
 
 app.use(express.static(path.resolve(__dirname, "../frontend/build")));
@@ -27,6 +28,7 @@ let jsonParser = parser.json() //parse req.body to json
 
 app.use('/api',articles)
 app.use('/api/analyser',analyser)
+app.use('/deleted',deleted)
 
 /*
 app.get('/',async function(req,res){
@@ -117,7 +119,7 @@ app.put('/articles/:id',jsonParser, async function (req,res){
 })
 */
 
-
+/*
 
 app.delete('/:id([0-9a-fA-F]{24})',jsonParser, async function(req, res){
     const article = await Article.findById(req.params.id).then((res)=>{
@@ -129,7 +131,7 @@ app.delete('/:id([0-9a-fA-F]{24})',jsonParser, async function(req, res){
 
     })
 
-    // to delete the original article
+    // to delete the original article from queue
     const articleOnQueue = await QueueArticles.deleteOne({articleId:req.params.id}) // to delete it from the queue
     res.send("Article has been deleted.")
 })
@@ -139,6 +141,8 @@ app.get('/deleted',async function(req,res){
     res.send(allDeleted)
 }
 )
+
+*/
 
 
 const port = process.env.PORT || 8082;
