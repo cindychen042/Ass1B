@@ -1,5 +1,3 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
 import { render, fireEvent, screen, cleanup} from '@testing-library/react';
 import '@testing-library/jest-dom'
 import SearchArticles from './searchArticles'
