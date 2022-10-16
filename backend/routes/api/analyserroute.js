@@ -1,7 +1,7 @@
 
-const Article = require('../../models/articles')
-const QueueArticles = require('../../models/analyser')
-const DeletedArticle =  require('../../models/deletedarticles')
+const Article = require('../../../models/articles')
+const QueueArticles = require('../../../models/analyser')
+const DeletedArticle =  require('../../../models/deletedarticles')
 const express = require('express');
 const cors = require('cors')
 const path = require("path");
@@ -50,7 +50,7 @@ router.put('/articles/:id',jsonParser, async function (req,res){
         ...req.body
     }
     console.log(data)
-    const {title,authors,journal,number,pages,doi,pubyear,source,evidence,claim,volume} = data
+    const {title,authors,journal,number,pages,doi,pubyear,source,evidence,claim,volume,status,method} = data
 
     const article = await Article.findById(req.params.id)
     const articleInQueue = await QueueArticles.findOneAndUpdate({'articleId':req.params.id},{'edited':true})
@@ -68,6 +68,8 @@ router.put('/articles/:id',jsonParser, async function (req,res){
     article.claim = claim
     article.volume = volume
     article.edited = true
+    article.status = status
+    article.method = method
     article.save()
     console.log(article)
     

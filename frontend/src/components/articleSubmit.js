@@ -27,7 +27,7 @@ function Articles(){
 
     const handleSubmit = (e)=>{
         e.preventDefault()
-        axios.post(`${API_ENDPOINT}/api/`,content).then((res)=>{
+        axios.post(`${API_ENDPOINT}/api/articles`,content).then((res)=>{
             setOpenDialog(
                 {
                     value:!value,
@@ -38,7 +38,7 @@ function Articles(){
             )
             setTimeout(()=>{
                 redirect('/')
-            },3000)
+            },2000)
             //a dialog will display, and after 3 seconds the client will redirect the user to 'Home' page.
            
 
