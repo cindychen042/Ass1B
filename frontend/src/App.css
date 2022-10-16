@@ -112,3 +112,20 @@
   border-color: black;
   width: 51%;
 }
+
+.radio{
+  display: none;
+}
+
+.star{
+  cursor:pointer;
+  transition:color 200ms;
+}
+
+.rate{
+  position:absolute;
+bottom:0;
+right:50%;
+margin-right: -30%;
+}
+
