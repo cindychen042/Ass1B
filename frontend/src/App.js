@@ -24,6 +24,7 @@ function App() {
       <Route exact path='analyser/articles/:id' element={<SercAnalyser></SercAnalyser>}></Route>
       <Route exact path='analyser/articles' element ={<SercAnalyser></SercAnalyser>}></Route>
       <Route exact path='/search/userview/:id' element ={<UserView></UserView>}></Route>
+      <Route exact path='/userview/:id' element ={<UserView></UserView>}></Route>
       </Routes>
       </Router>
    
