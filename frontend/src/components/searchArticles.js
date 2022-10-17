@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { DataGrid } from '@mui/x-data-grid';
 import MainPage from "./mainpage";
 import {API_ENDPOINT} from '../api/index.js'
+import {Link} from "react-router-dom";
  
 function SearchArticles({dataTestId1, dataTestId2}){
     const[articles, setArticles] = useState([]);
@@ -39,7 +40,11 @@ function SearchArticles({dataTestId1, dataTestId2}){
     { field: 'doi', headerName: 'DOI', width: 200 },
     { field: 'claim', headerName: 'Claim', width: 200 },
     { field: 'evidence', headerName: 'Evidence', width: 200 },
-    
+    {field: 'actions',headerName:'Action',width:200,
+    renderCell:(cellValues)=>{
+      return <Link to={`userview/${cellValues.row._id}`}>View</Link>;
+    }
+  }
     ];
     
     

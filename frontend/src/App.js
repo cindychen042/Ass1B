@@ -6,6 +6,7 @@ import SercAnalyser from './components/sercanalyser';
 import SearchArticles from './components/searchArticles';
 import ManageArticles from './components/manageArticle';
 import View from './components/view';
+import UserView from './components/userview';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
 
       <Route exact path='analyser/articles/:id' element={<SercAnalyser></SercAnalyser>}></Route>
       <Route exact path='analyser/articles' element ={<SercAnalyser></SercAnalyser>}></Route>
+      <Route exact path='/search/userview/:id' element ={<UserView></UserView>}></Route>
       </Routes>
       </Router>
    
