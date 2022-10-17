@@ -12,6 +12,7 @@ const http = require('http');
 
 const articles = require('../routes/api/articleroute');
 const analyser = require('../routes/api/analyserroute');
+const rating = require('../routes/api/ratingroute');
 
 
 app.use(express.static(path.resolve(__dirname, "../frontend/build")));
@@ -27,6 +28,8 @@ let jsonParser = parser.json() //parse req.body to json
 
 app.use('/api',articles)
 app.use('/api/analyser/articles',analyser)
+app.use('/api/search/userview/:id', rating) ///for rating router
+
 
 /*
 app.get('/',async function(req,res){
