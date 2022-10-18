@@ -6,6 +6,7 @@ import SearchArticles from './searchArticles'
 import { BrowserRouter as Route} from 'react-router-dom';
 
 
+
 describe("SearchArticle.js", () => {
     it("Search Article has data test id working", () => {
         render(<SearchArticles dataTestId1="inputValueID" dataTestId2="buttonID" /> , {wrapper: Route});

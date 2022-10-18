@@ -8,21 +8,31 @@ import {API_ENDPOINT} from '../api/index.js'
 
 
 function SercAnalyser(){
-    const id = useParams() // to access a specific article by id 
     const redirect = useNavigate() // to redirect to another page when needed
     const [articlesInQueue,setArticlesInQueue] = useState([]) // receiving all articles in queue
+
+
     const [articleOnEdit,setArticleOnEdit] = useState({title:'',authors:'',volume:'',journal:'',number:'',pages:'',source:'',pubyear:'',doi:'',claim:'',evidence:'',method:'',status:''})
+
+
     const {title,authors,journal,number,pages,doi,pubyear,source,evidence,claim,volume,method,status} = articleOnEdit
+
+
     const [isEdited,setIsEdited] = useState(false) // if article has been edited, the useEffect function will be invoked again to actually fetch the article again 
     //with the updated values// this state will be put in useEffect dependency array in order for the function to invoke on every update
+
+
     const [open,setOpen] = useState(false) //we are going to use a dialog, so this state is going to control opening/closing the dialog
-    const [id_,setId_] = useState(null) // to set the orginal article id
+
+
     const [switchPanel,setSwitchPanel] = useState('') // to switch between the edited articles and the articles in queue
+
     const [deleted,setDeleted] = useState([])
-    const [notifColor,setNotifColor] = useState('') // to switch notifcation icon color based on article availability in queue
+    const [updated,setUpdated] = useState(0) //re-invoke useEffect whenever there is a change in the queue
 
 
     const [anchorEl, setAnchorEl] = useState(null);
+
     const open_ = Boolean(anchorEl);
     const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
@@ -38,13 +48,13 @@ function SercAnalyser(){
 
 
     useEffect(()=>{
-        axios.get(`${API_ENDPOINT}/api/analyser/articles/`).then((res)=>{
+        axios.get(`${API_ENDPOINT}/api/analyser/analyser/articles/`).then((res)=>{
             setArticlesInQueue(res.data)
             console.log(res.data)
             }).catch((e)=>{
             console.log(e.response.data)
         })
-    },[isEdited])
+    },[isEdited,updated])
 
     // this effect is implemented to receive all articles in queue
     const editButtonById = (id)=>{
@@ -70,7 +80,7 @@ function SercAnalyser(){
     }
     const submitChange = (e,id)=>{
         e.preventDefault()
-        axios.put(`${API_ENDPOINT}/api/articles/${id}`,articleOnEdit).then((res)=>{
+        axios.put(`${API_ENDPOINT}/api/analyser/articles/${id}`,articleOnEdit).then((res)=>{
             setIsEdited(true)
             setOpen(false)
             setSwitchPanel('edited/completed')
@@ -83,29 +93,28 @@ function SercAnalyser(){
     
 
     const deleteArticle = (e,id)=>{
-        /*
         e.preventDefault()
-        axios.delete(`${API_ENDPOINT}/${id}`,id).then((res)=>{
+        axios.delete(`${API_ENDPOINT}/api/${id}/`,id).then((res)=>{
             setArticlesInQueue(articlesInQueue.filter((article)=>{
                 return article.id!== id
 
             }))
+            setUpdated(updated+1)
         }
         )
-        */
     }
         // to delete a specific article.
         // once deleted, add the deleted article to the deletedarticle table in the database
 
     useEffect(()=>{
-        axios.get(`${API_ENDPOINT}/api/deleted`).then((res)=>{
+        axios.get(`${API_ENDPOINT}/deleted`).then((res)=>{
             console.log(res.data)
             setDeleted(res.data)
         })
     },[])
 
     const mappingArticles = (articles)=>{
-        if(articles){
+        if(articles.length){
         return(
         articles.map((article)=>{
             return(
@@ -129,6 +138,8 @@ function SercAnalyser(){
                     <input name='number' value={number} className='number' placeholder='insert the number' onChange={(e)=>handleChange(e)}/>
                     <input name='claim' value={claim} className='claim' placeholder='insert the claim' onChange={(e)=>handleChange(e)}/>
                     <input name="evidence" value={evidence} className='evidence' placeholder="insert the evidence" onChange={(e)=>handleChange(e)}/>
+                    <input name='status' value={status} className='status' placeholder="status" onChange={(e)=>handleChange(e)} />
+                    <input name='method' value={method} className='method' placeholder="method" onChange={(e)=>handleChange(e)} />
                     <Button type='submit'>Submit Article</Button>
                     </form>
                     </div>
@@ -147,12 +158,14 @@ function SercAnalyser(){
     )
     }
 
-    const mapDeleted = ()=>{
+    const mapDeleted = (deleted)=>{
+
+        if(deleted.length){
         return(
         deleted.map((article)=>{
             return(
 
-            <div className='new-div'>
+            <div className='analyser-div'>
             <div required name='title'  className='title' placeholder='insert the title' onChange={(e)=>handleChange(e)}>{article.title}</div>
             <div required name='authors'  className='title' placeholder='insert the authors name/s' onChange={(e)=>handleChange(e)}>{article.authors}</div>
             <div name='source'  className='title' placeholder="insert the source url" onChange={(e)=>handleChange(e)}>{article.sources}</div>
@@ -170,6 +183,8 @@ function SercAnalyser(){
 
         })
         )
+    }
+    return null
     }
 
     if(switchPanel==='edited/completed'){
@@ -247,13 +262,14 @@ function SercAnalyser(){
             <Button name='deleted' onClick={(e)=>handleClick(e)} style={{'borderBottom':'2px solid red'}}>Deleted Articles</Button>
             </span>
             <h1>DELETED ARTICLES</h1>
-            {mapDeleted()}
+            {deleted.length?mapDeleted(deleted):null}
 
         </div>
         )
     }
 
     else {
+        let articles_ = articlesInQueue.filter((article)=>article.edited===false)
 
         return(
             <div className='analyser-div'>
@@ -285,7 +301,7 @@ function SercAnalyser(){
                 <Button name='deleted' onClick={(e)=>handleClick(e)} >Deleted Articles</Button>
                 </span>
                 <h1>SERC QUEUE</h1>
-                {mappingArticles(articlesInQueue)}
+                {mappingArticles(articles_)}
     
             </div>
             // more to implement...
