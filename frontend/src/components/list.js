@@ -8,10 +8,24 @@ import {API_ENDPOINT} from  '../api/index.js';
 function List (){
     const [article,setArticle] = useState([])
 
+    function loadArticle(){
+      axios.get(`${API_ENDPOINT}/api/`).then(res=>setArticle(res.data))
+    }
     useEffect(()=>{
-        axios.get(`${API_ENDPOINT}/api/`).then(res=>setArticle(res.data))
+       loadArticle()
        },[])
 
+       const deleteArticle = (e,id)=>{
+        e.preventDefault()
+        axios.delete(`${API_ENDPOINT}/api/${id}`,id).then((res)=>{
+            setArticle(article.filter((data)=>{
+                return data.id!== id
+
+            }))
+            loadArticle()
+        }
+        )
+    }
 
 return (
     
@@ -48,6 +62,9 @@ return (
             <TableCell>{data.method}</TableCell>
           <TableCell>
           <Link to={`view/${data._id}`}>View</Link>
+          <form method='delete' onSubmit={(e)=>deleteArticle(e,data._id)}>
+          <button>Delete</button>
+          </form>
           </TableCell>
         </TableRow>
    )})}

@@ -3,6 +3,7 @@ import { useParams} from "react-router-dom";
 import { React,useEffect,useState} from "react";
 import MainPage from "./mainpage";
 import {FaStar} from "react-icons/fa";
+import {API_ENDPOINT} from  '../api/index.js';
 
 const UserView =()=>{  
     const {id} = useParams();
@@ -10,7 +11,7 @@ const UserView =()=>{
    const[rating,setRating] = useState(0);
 
    useEffect(()=>{
-    axios.get(`http://localhost:8082/${id}/`).then(res=>setArticle1(res.data));
+    axios.get(`${API_ENDPOINT}/api/${id}/`).then(res=>setArticle1(res.data));
    },[]);
 
 return(
