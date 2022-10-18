@@ -3,15 +3,31 @@ import axios from 'axios'
 import {Table, TableHead,TableBody,TableRow,TableCell} from '@mui/material';
 import {Link} from "react-router-dom";
 import {API_ENDPOINT} from  '../api/index.js';
-
+import Button from 'react-bootstrap/Button';
+import 'bootstrap/dist/css/bootstrap.css';
 
 function List (){
     const [article,setArticle] = useState([])
 
+    //display all articles from database
+    function loadArticle(){
+      axios.get(`${API_ENDPOINT}/api/`).then(res=>setArticle(res.data))
+    }
     useEffect(()=>{
-        axios.get(`${API_ENDPOINT}/api/`).then(res=>setArticle(res.data))
+       loadArticle()
        },[])
 
+       const deleteArticle = (e,id)=>{
+        e.preventDefault()
+        axios.delete(`${API_ENDPOINT}/api/${id}`,id).then((res)=>{
+            setArticle(article.filter((data)=>{
+                return data.id!== id
+
+            }))
+            loadArticle()
+        }
+        )
+    }
 
 return (
     
@@ -47,7 +63,10 @@ return (
             <TableCell>{data.journal}</TableCell>
             <TableCell>{data.method}</TableCell>
           <TableCell>
-          <Link to={`view/${data._id}`}>View</Link>
+          <Link to={`view/${data._id}`}>
+            <Button variant = "primary">View</Button>
+            </Link>
+          <Button variant = "danger" onClick = {(e)=>deleteArticle(e,data._id)}>Delete</Button>
           </TableCell>
         </TableRow>
    )})}
