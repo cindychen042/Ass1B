@@ -15,6 +15,7 @@ const View =()=>{
     axios.get(`${API_ENDPOINT}/api/${id}/`).then(res=>setArticle1(res.data));
    },[]);
 
+   //articles accepted will be then passed to the analyser
    const sendToAnalyst = (e)=>{
     e.preventDefault()
     axios.post(`${API_ENDPOINT}/api/analyser/analyser/articles/`,article1).then((res)=>{
@@ -40,7 +41,7 @@ return(
                 <li className = 'pubyear'>Pubyear: <span className = 'pubyear'>{article1.pubyear}</span></li> 
                 <li className = 'claim'>Claim: <span className = 'claim'>{article1.claim}</span></li> 
                 <li className = 'evidence'>Evidence: <span className = 'evidence'>{article1.evidence}</span></li>
-                <button type='submit' className='submit'>Send to Analyst</button>                    
+                <button type='submit' className='submit'>Accept</button>                    
             </form>
             </div>
 

@@ -18,6 +18,7 @@ function List (){
        loadArticle()
        },[])
 
+//articles rejected will be deleted and send to the deleted Article database
        const deleteArticle = (e,id)=>{
         e.preventDefault()
         axios.delete(`${API_ENDPOINT}/api/${id}`,id).then((res)=>{
@@ -50,10 +51,10 @@ return (
     </TableRow>
     </TableHead>
     <TableBody>
-    {article.map((data) => {
+    {article.map((data,index) => {
      return (
        <TableRow>
-        <TableCell>{data._id}</TableCell>
+        <TableCell>{index+1}</TableCell>
         <TableCell>{data.title}</TableCell>
             <TableCell>{data.authors}</TableCell>
             <TableCell>{data.source}</TableCell>
