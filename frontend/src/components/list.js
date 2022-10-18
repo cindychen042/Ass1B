@@ -10,6 +10,7 @@ function List (){
     const [article,setArticle] = useState([])
 
     //display all articles from database
+
     function loadArticle(){
       axios.get(`${API_ENDPOINT}/api/`).then(res=>setArticle(res.data))
     }
