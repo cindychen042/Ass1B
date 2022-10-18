@@ -17,12 +17,12 @@ const UserView =()=>{
    },[id]);
 
    useEffect(()=>{
-    axios.get(`${API_ENDPOINT}/search/userview/${id}/${id}/${id}/${id}`) 
+    axios.get(`${API_ENDPOINT}/search/userview/${id}`) 
     .then(res=>setratingArticle(res.data));
      } )
 
    const getRating= ()=>{
-    axios.get(`${API_ENDPOINT}/search/userview/${id}/${id}/${id}/${id}`)
+    axios.get(`${API_ENDPOINT}/search/userview/${id}`)
     .then(res=>setratingArticle(res.data));
     console.log(ratingArticle);
    }
@@ -36,11 +36,11 @@ const UserView =()=>{
      }
 
     const submitRate = ()=>{
-        axios.post(`${API_ENDPOINT}/search/userview/${id}/${id}`,articleRate).then((res)=>{
+        axios.post(`${API_ENDPOINT}/search/userview/${id}`,articleRate).then((res)=>{
             console.log(res.data);
             console.log("getting average....");
             getRating();
-            axios.get(`${API_ENDPOINT}/search/userview/${id}/${id}/${id}/${id}`)
+            axios.get(`${API_ENDPOINT}/search/userview/${id}`)
             .then(res=>setratingArticle(res.data));
             console.log(ratingArticle);
             setTimeout(()=>{

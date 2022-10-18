@@ -30,7 +30,8 @@ let jsonParser = parser.json() //parse req.body to json
 app.use('/api',articles)
 app.use('/api/analyser',analyser)
 app.use('/deleted',deleted)
-app.use('/search/userview/:id',rating)
+
+app.use('/search/userview',rating)
 
 /*
 app.get('/',async function(req,res){
