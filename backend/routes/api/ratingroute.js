@@ -18,7 +18,7 @@ router.get('/',async function(req,res){
 /*
 this GET method returns the AVERAGE RATING ONLY, not the entire document
 */
-router.get('///:id([0-9a-fA-F]{24})',async function(req,res){
+router.get('/:id([0-9a-fA-F]{24})/:id([0-9a-fA-F]{24})/:id([0-9a-fA-F]{24})',async function(req,res){
     console.log("param id is " +req.params.id);
     let ratingArr = [];
     const article = await Ratingarticle.find({articleID: req.params.id})
