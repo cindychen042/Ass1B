@@ -25,6 +25,7 @@ jobs:
       - name: Run the tests
         run: |
           cd frontend
+          npm install
           npm test search
 
       - name: Build
