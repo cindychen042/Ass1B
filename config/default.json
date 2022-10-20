@@ -1,5 +1,0 @@
-{
-    "PORT":5000,
-    "mongoURI":"mongodb+srv://cise_db:VAko3pw9drWF5PRS@cluster0.0dktgqg.mongodb.net/?retryWrites=true&w=majority",
-    "NODE_ENV":"production"
-}
