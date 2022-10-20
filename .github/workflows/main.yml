@@ -24,7 +24,6 @@ jobs:
 
       - name: Run the tests
         run: |
-          npm test backendtest
           cd frontend
           npm test search
 
