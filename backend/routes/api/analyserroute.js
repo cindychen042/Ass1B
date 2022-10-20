@@ -55,11 +55,9 @@ router.post('/analyser/articles',jsonParser,async function(req,res){
 
 // the analyser is able to edit an article and it would be marked as "completed" 
 router.put('/articles/:id',jsonParser, async function (req,res){
-    console.log(req.body)
     let data = {
         ...req.body
     }
-    console.log(data)
     const {title,authors,journal,number,pages,doi,pubyear,source,evidence,claim,volume,status,method} = data
 
     const article = await Article.findById(req.params.id)
