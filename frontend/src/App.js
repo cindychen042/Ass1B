@@ -6,7 +6,7 @@ import SercAnalyser from './components/sercanalyser';
 import SearchArticles from './components/searchArticles';
 import ManageArticles from './components/manageArticle';
 import View from './components/view';
-import UserView from './components/UserView'
+import UserView from './components/userview'
 
 function App() {
   return (
