@@ -1,5 +1,7 @@
 import React from'react';
 import {Link} from 'react-router-dom';
+
+//this basically the navigation bar, that can redirect you to the requested page
 function MainPage(){
     return(
         <div className='nav-div'>

@@ -8,14 +8,28 @@ import {API_ENDPOINT} from '../api/index.js'
 
 
 function Articles(){
+        //creating a state for article data, to be sent to the server side once submitted (post request)
         const [content,setContent] = useState({title:'',authors:'',volume:'',journal:'',number:'',pages:'',source:'',pubyear:'',doi:'',claim:'',evidence:''})
+        
+        /*
+        a state for controlling opening/closing a dialog with a message (shows you a confirmation message thatt your article
+        has been submitted
+        */
         const [openDialog,setOpenDialog] = useState({message:'',value:0})
+
+        //destructing the openDialog state to directly retrieving the values of the object
         const {message,value} = openDialog 
+
+        //same destructing here for content state
         const {title,authors,journal,number,pages,doi,pubyear,source,evidence,claim,volume} = content
+
+        //initializing a redirect functionality for redirecting to other pages
         const redirect = useNavigate()
 
 
 
+    /* This function is responsible for tracking the change of "current" state 
+    and updating it with every change (user event (e.g writing stuffs from keyboard)) that happens */
     const handleChange = (e)=>{
         setContent(
                 {
@@ -25,8 +39,11 @@ function Articles(){
         )
     }
 
+
+    /*handling the submission by making a post request (sending "content" data) from client side
+    and putting "content" state data as a request body*/
     const handleSubmit = (e)=>{
-        e.preventDefault()
+        e.preventDefault() //this functionality prevent any hard reload whenever a user press the submit button
         axios.post(`${API_ENDPOINT}/api/articles`,content).then((res)=>{
             setOpenDialog(
                 {
@@ -39,7 +56,7 @@ function Articles(){
             setTimeout(()=>{
                 redirect('/')
             },2000)
-            //a dialog will display, and after 3 seconds the client will redirect the user to 'Home' page.
+            //a dialog will display, and after 2 seconds the client will redirect the user to 'Home' page.
            
 
         })
@@ -48,6 +65,8 @@ function Articles(){
     }
 
 
+
+    //finally, rendering the jsx content.
 
     return(
             <div className='article-div'>
