@@ -11,37 +11,34 @@ let jsonParser = parser.json() //parse req.body to json
 router.get('/',async function(req,res){
     const article = await Article.findById()
     res.send(article)
-    console.log(article)
-   
 })
 
 /*
 this GET method returns the AVERAGE RATING ONLY, not the entire document
 */
 router.get('/:id([0-9a-fA-F]{24})',async function(req,res){
-    let ratingArr = [];
+    let ratingArr = []; //stores recent ratings of specific article
     const article = await Ratingarticle.find({articleID: req.params.id})
     article.forEach(function(article){
-        ratingArr.push(article.rating);
+        ratingArr.push(article.rating); //adds specific rating from various users
     });
     var sum = 0;
     for (var number of ratingArr) {
         sum += number;
     }
-    var average = sum / ratingArr.length;
-    res.send(JSON.stringify(average.toFixed(2)));
+    var average = sum / ratingArr.length; //average rating of specific article
+    res.send(JSON.stringify(average.toFixed(2))); //round up to 2 decimal
 })
 
 
 /*
-this POST method submits the entire information of the article 
-INCLUDING the rating
+this POST method submits the entire information of the article including the rating
 */
 router.post('/:id([0-9a-fA-F]{24})',jsonParser,(req,res)=>{
     const paramid = req.params.id;
     const newratingArticle = new Ratingarticle({
         articleID: paramid,
-        rating: req.body[1],
+        rating: req.body[1], //newly added element called rating
         title: req.body[0].title,
         journal: req.body[0].journal,
         volume: req.body[0].volume,

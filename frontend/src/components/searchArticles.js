@@ -12,7 +12,7 @@ function SearchArticles({dataTestId1, dataTestId2}){
   const[dummArr, setDummyArr] = useState([]); //array for recent search values
 
    
-    //responsible for getting recent searches from local storage
+  //responsible for getting recent searches from local storage
   useEffect(()=>{
     if(localStorage.getItem('dataKey') == null){
       localStorage.setItem('dataKey', '[]');
@@ -80,7 +80,6 @@ function SearchArticles({dataTestId1, dataTestId2}){
     setDummyArr(old_data); //set search array based on values obtained by previous searches
   }
     
-
   return (
     <div  style={{height: 680, width: '100%' }}>
       <MainPage></MainPage>
