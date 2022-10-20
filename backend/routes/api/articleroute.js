@@ -13,7 +13,6 @@ let jsonParser = parser.json() //parse req.body to json
 //fetching all articles in the main page
 router.get('/',async function(req,res){
     const article = await Article.find()
-    console.log(article)
     res.send(article)
 })
 
@@ -31,8 +30,7 @@ router.post('/articles',jsonParser,(req,res)=>{
     let data = {
         ...req.body
     }
-    console.log("this is data")
-    console.log(req.body)
+
     const newArticle = new Article({...data})
     newArticle.save()
     res.send("The Submission is now in hand of the moderator to be accepted or rejected.")
@@ -59,7 +57,6 @@ router.delete('/:id([0-9a-fA-F]{24})',async function(req,res){
         obj.pubyear = res.pubyear
 
         Article.deleteOne({title:obj.title}).then((res)=>{
-            console.log('success!')
         })
         const addDeletedArticle = new DeletedArticle(obj)
         addDeletedArticle.save()
