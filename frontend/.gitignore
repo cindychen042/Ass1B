@@ -2,7 +2,7 @@
 
 # dependencies
 /frontend/node_modules
-/config/default.json
+/config/default.js
 /node_modules
 /.pnp
 .pnp.js
