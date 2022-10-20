@@ -1,4 +1,7 @@
 
+//Creating a router for getting, posting, deleting, and edited articles in analyser page.
+
+
 const Article = require('../../../models/articles')
 const QueueArticles = require('../../../models/analyser')
 const DeletedArticle =  require('../../../models/deletedarticles')
@@ -8,14 +11,19 @@ const path = require("path");
 const parser = require('body-parser'); // to serialize the requests to json form
 const router = express.Router();
 
+
+
 let jsonParser = parser.json() //parse req.body to json
 
 
+//getting all the data from queue route 
 router.get('/analyser/articles',async function(req,res){
     const articlesInQueue = await QueueArticles.find()
     res.send(articlesInQueue)
 })
 
+
+//getting a specific article details from the queue
 router.get('/analyser/articles/:id([0-9a-fA-F]{24})',async function(req,res){
     const article = await QueueArticles.findById(req.params.id)
     console.log(req.params.id)
@@ -23,6 +31,8 @@ router.get('/analyser/articles/:id([0-9a-fA-F]{24})',async function(req,res){
 
 })
 
+
+//this is post request from the admin page to queue page, basically add an article to queue from admin page.
 router.post('/analyser/articles',jsonParser,async function(req,res){
     let data = {
         ...req.body
@@ -43,7 +53,7 @@ router.post('/analyser/articles',jsonParser,async function(req,res){
 })
 
 
-
+// the analyser is able to edit an article and it would be marked as "completed" 
 router.put('/articles/:id',jsonParser, async function (req,res){
     console.log(req.body)
     let data = {
