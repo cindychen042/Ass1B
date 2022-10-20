@@ -35,6 +35,7 @@ jobs:
       - name: Deploy
         run: |
           heroku login
+          heroku git:remote -a cise-ass1b-group6
           git push heroku main
 
       - uses: akhileshns/heroku-deploy@v3.12.12
