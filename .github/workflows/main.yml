@@ -29,7 +29,9 @@ jobs:
           npm test search
 
       - name: Build
-        run: npm run build
+        run: |
+          cd frontend
+          npm run build
       - name: Deploy
         run: git push heroku main
 
