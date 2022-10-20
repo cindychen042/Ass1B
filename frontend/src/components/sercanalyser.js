@@ -8,7 +8,6 @@ import {API_ENDPOINT} from '../api/index.js'
 
 
 function SercAnalyser(){
-    const redirect = useNavigate() // to redirect to another page when needed
     const [articlesInQueue,setArticlesInQueue] = useState([]) // receiving all articles in queue
 
 

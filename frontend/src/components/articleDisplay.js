@@ -37,6 +37,7 @@ const {
     usePagination
   )
   
+  //rendering a table in the main page
     return (
         <>
         
@@ -155,7 +156,6 @@ function DisplayArticles(){
                 value:e.target.value
             }
         )
-        console.log("test")
 
     }
     // The basic idea here is to create a state array to store all information coming from the database. useEffect()

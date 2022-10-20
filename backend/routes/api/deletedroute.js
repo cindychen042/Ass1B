@@ -7,6 +7,8 @@ const path = require("path");
 const parser = require('body-parser'); // to serialize the requests to json form
 const router = express.Router();
 
+
+//fetching all deleted articles.
 router.get('/', async function (req, res) {
     const deleted = await DeletedArticle.find()
     res.send(deleted)

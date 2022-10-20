@@ -10,11 +10,14 @@ const router = express.Router();
 let jsonParser = parser.json() //parse req.body to json
 
 
+//fetching all articles in the main page
 router.get('/',async function(req,res){
     const article = await Article.find()
     console.log(article)
     res.send(article)
 })
+
+
 
 
 router.get('/:id([0-9a-fA-F]{24})',async function(req,res){
@@ -23,6 +26,7 @@ router.get('/:id([0-9a-fA-F]{24})',async function(req,res){
 })
 
 
+//for sending and submitting new article data
 router.post('/articles',jsonParser,(req,res)=>{
     let data = {
         ...req.body
@@ -34,6 +38,8 @@ router.post('/articles',jsonParser,(req,res)=>{
     res.send("The Submission is now in hand of the moderator to be accepted or rejected.")
 })
 
+
+//delete an article (this can be done from both moderator and analyser pages)
 router.delete('/:id([0-9a-fA-F]{24})',async function(req,res){
     const article = await Article.findById(req.params.id).then((res)=>{
         console.log("this is res")
