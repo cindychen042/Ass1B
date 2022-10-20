@@ -21,7 +21,6 @@ const View =()=>{
     axios.post(`${API_ENDPOINT}/api/analyser/analyser/articles/`,article1).then((res)=>{
         redirect('/analyser/articles')
     }).catch((e)=>{
-        console.log(e.response.data)
     })
    }
 

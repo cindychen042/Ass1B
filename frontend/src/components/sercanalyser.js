@@ -41,7 +41,6 @@ function SercAnalyser(){
   };
     const handleClick = (e)=>{
         setSwitchPanel(e.target.name)
-        console.log(e.target.name)
     }
 
 
@@ -49,9 +48,7 @@ function SercAnalyser(){
     useEffect(()=>{
         axios.get(`${API_ENDPOINT}/api/analyser/analyser/articles/`).then((res)=>{
             setArticlesInQueue(res.data)
-            console.log(res.data)
             }).catch((e)=>{
-            console.log(e.response.data)
         })
     },[isEdited,updated])
 
@@ -83,7 +80,6 @@ function SercAnalyser(){
             setIsEdited(true)
             setOpen(false)
             setSwitchPanel('edited/completed')
-            console.log(res.data)
 
 
         })
@@ -107,7 +103,6 @@ function SercAnalyser(){
 
     useEffect(()=>{
         axios.get(`${API_ENDPOINT}/deleted`).then((res)=>{
-            console.log(res.data)
             setDeleted(res.data)
         })
     },[])
@@ -303,7 +298,6 @@ function SercAnalyser(){
                 {mappingArticles(articles_)}
     
             </div>
-            // more to implement...
         )
         }
 
