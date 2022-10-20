@@ -7,42 +7,45 @@ import {API_ENDPOINT} from '../api/index.js'
 
 const UserView =()=>{  
     const {id} = useParams();
-   const [article1,setArticle1] = useState([]);
-   const [ratingArticle,setratingArticle] = useState([]);
-   const[rating,setRating] = useState();
-   let [articleRate] = useState([]);
+    const [article1,setArticle1] = useState([]);
+    const [ratingArticle,setratingArticle] = useState([]);
+    const[rating,setRating] = useState();
+    let [articleRate] = useState([]);
 
-   useEffect(()=>{
-    axios.get(`${API_ENDPOINT}/api/${id}/`).then(res=>setArticle1(res.data));
-   },[id]);
+    //responsible for getting the article information
+    useEffect(()=>{
+        axios.get(`${API_ENDPOINT}/api/${id}/`).then(res=>setArticle1(res.data));
+    },[id]);
 
-   useEffect(()=>{
-    axios.get(`${API_ENDPOINT}/search/userview/${id}`) 
-    .then(res=>setratingArticle(res.data));
-     } )
 
-   const getRating= ()=>{
+    //responsible for 'initially' getting the rating average 
+    useEffect(()=>{
+        axios.get(`${API_ENDPOINT}/search/userview/${id}`) 
+        .then(res=>setratingArticle(res.data));
+    } )
+
+
+    //responsible for getting the rating average
+   const getAverageRating= ()=>{
     axios.get(`${API_ENDPOINT}/search/userview/${id}`)
     .then(res=>setratingArticle(res.data));
-    console.log(ratingArticle);
    }
 
-
+    //responsible for setting the rate of the article
    const ratingFunction = (value) =>{
-        console.log(value);
         setRating(value);
         articleRate.splice(0, articleRate.length)
         articleRate.push(value);
      }
 
     const submitRate = ()=>{
-        axios.post(`${API_ENDPOINT}/search/userview/${id}`,articleRate).then((res)=>{
-            console.log(res.data);
-            console.log("getting average....");
-            getRating();
+        let newArticle = [];
+        newArticle.push(article1);
+        newArticle.push(rating);
+        axios.post(`${API_ENDPOINT}/search/userview/${id}`,newArticle).then((res)=>{
+            getAverageRating(); //gets the average rating
             axios.get(`${API_ENDPOINT}/search/userview/${id}`)
             .then(res=>setratingArticle(res.data));
-            console.log(ratingArticle);
             setTimeout(()=>{
                 redirect('/userview/:id')
             },3000)
