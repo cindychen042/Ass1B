@@ -33,7 +33,9 @@ jobs:
           cd frontend
           npm run build
       - name: Deploy
-        uses: akhileshns/heroku-deploy@v3.12.12
+        run: |
+          heroku git:remote -a cise-ass1b-group6
+      -  uses: akhileshns/heroku-deploy@v3.12.12
         with:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_app_name: 'cise-ass1b-group6'
