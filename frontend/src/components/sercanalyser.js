@@ -159,7 +159,7 @@ function SercAnalyser(){
         deleted.map((article)=>{
             return(
 
-            <div className='analyser-div'>
+            <div className='queue-div'>
             <div required name='title'  className='title' placeholder='insert the title' onChange={(e)=>handleChange(e)}>{article.title}</div>
             <div required name='authors'  className='title' placeholder='insert the authors name/s' onChange={(e)=>handleChange(e)}>{article.authors}</div>
             <div name='source'  className='title' placeholder="insert the source url" onChange={(e)=>handleChange(e)}>{article.sources}</div>

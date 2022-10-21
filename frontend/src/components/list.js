@@ -8,6 +8,8 @@ import 'bootstrap/dist/css/bootstrap.css';
 
 function List (){
     const [article,setArticle] = useState([]) //making a state to fetch all the articles data from backend
+    
+
 
     /*
     useEffect will be invoked once the page is fully rendered and only once, 
@@ -20,8 +22,7 @@ function List (){
       axios.get(`${API_ENDPOINT}/api/`).then(res=>setArticle(res.data))
     }
     useEffect(()=>{
-        axios.get(`${API_ENDPOINT}/api/`).then(res=>setArticle(res.data)) //making a get request and get the data and set it for the state
-       loadArticle()
+       loadArticle() //making a get request and get the data and set it for the state
        },[])
 
 //articles rejected will be deleted and send to the deleted Article database
@@ -38,12 +39,13 @@ function List (){
     }
 
 return (
+  
     
     <div className = "table">
     <Table>
       <TableHead>
           <TableRow>
-          <TableCell>id</TableCell>
+          <TableCell>index</TableCell>
             <TableCell>title</TableCell>
             <TableCell>author</TableCell>
             <TableCell>source</TableCell>
